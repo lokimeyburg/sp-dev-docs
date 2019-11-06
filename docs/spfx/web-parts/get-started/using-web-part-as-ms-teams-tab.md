@@ -286,17 +286,16 @@ You should now be able to sync your new version to Microsoft Teams.
 > [!Note]
 > This feature is currently in [Developer Preview](https://docs.microsoft.com/en-us/microsoftteams/platform/resources/dev-preview/developer-preview-intro)
 
-Personal apps in Microsoft Teams are dedicated standalone apps that are easy to find and work without needing to use the app in a group chat or channel setting. These apps have a reserved spot in the Microsoft Teams interface to make them immediately accessible no matter where you are in Teams. 
+Personal apps in Microsoft Teams are dedicated standalone apps that are easy to find and they work without needing to use the app in a group chat or channel setting. These apps have a reserved spot in the Microsoft Teams interface to make them immediately accessible no matter where you are in Teams. 
 
-To make your SPFx web part show up as a personal tab in Teams (aka: a static tab), you need to add a `staticTabs` array to your existing Teams application manifest. The structure looks like this:
+To make your SPFx web part show up as a personal tab in Teams (aka: a static tab), you need to add a `staticTabs` array to your existing Teams application manifest. See more details on [creating a Microsoft Teams manifest manually for a web part](../guidance/creating-team-manifest-manually-for-webpart.md). The structure looks like this:
 
 ```json
 "staticTabs": [
   {
-    "entityId": "SPFxTab",
-    "name": "[tabName]",
-    "contentUrl": "https://{teamSiteDomain}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest=/_layouts/15/teamshostedapp.aspx%3Fteams%26personal%26componentId=[componentId]%26forceLocale={locale}",
-    "websiteUrl": "[websiteURL]",
+    "entityId": "SPFx_Tab",
+    "name": "{{TAB_NAME}}",
+    "contentUrl": "https://{teamSiteDomain}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest=/_layouts/15/teamshostedapp.aspx%3Fteams%26personal%26componentId={{SPFX_COMPONENT_ID}}%26forceLocale={locale}",
     "scopes": ["personal"]
   }
 ],
@@ -304,11 +303,10 @@ To make your SPFx web part show up as a personal tab in Teams (aka: a static tab
 
 Be sure to replace the following placeholders:
 
-* `[tabName]`: The tab name that shows up in Teams 
-* `[componentId]`: This should be the same component Id as your SPFx web part.
-* `[websiteURL]`: (optional) The url to point at if a user opts to view the tab a browser.
+* `{{TAB_NAME}}`: The tab name that shows up in Teams 
+* `{{SPFX_COMPONENT_ID}}`: This should be the same component ID as your SPFx web part.
 
-![Teams personal tab](../../../images/sp-teams-solution-personal.png)
+![Teams personal tab](../../../images/sp-teams-solution-personal.png) 
 
 ## See also
 

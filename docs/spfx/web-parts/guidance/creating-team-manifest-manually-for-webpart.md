@@ -55,6 +55,14 @@ To side load a SharePoint Framework web part as a Microsoft Teams application, y
       ]
     }
   ],
+  "staticTabs": [
+    {
+      "entityId": "SPFx_Tab",
+      "name": "{{TAB_NAME}}",
+      "contentUrl": "https://{teamSiteDomain}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest=/_layouts/15/teamshostedapp.aspx%3Fteams%26personal%26componentId={{SPFX_COMPONENT_ID}}%26forceLocale={locale}",
+      "scopes": ["personal"]
+    }
+  ],
   "validDomains": [
     "*.login.microsoftonline.com",
     "*.sharepoint.com",
@@ -82,6 +90,7 @@ Important attributes to update in the manifest file are following:
 - **icons:color** - The `color` icon is used throughout Microsoft Teams (in app and tab galleries, bots, flyouts, and so on). This icon should be 192&times;192 pixels.
 - **configurationUrl** - You should adjust the sample `configurulationUrl` to include manifest id of your web part component by updating the GUID after `componentId` query parameter.
 - **canUpdateConfiguration** - Setting this property to true will mean that you allow modification of the properties of the web part. Set this value to false to prevent this.
+- **staticTabs:name** - The static/personal tab name that shows up in Teams
 
 Notice in the template manifest file above, there are multiple placeholders that should be updated. Use the following values from the SharePoint Framework's web part manifest file (**./src/webparts/[webpartname]/[webpartname].manifest.json**) to update these values:
 
@@ -131,6 +140,14 @@ Below json structure demonstrates sample manifest file content.
       "scopes": [
         "team"
       ]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "SPFx_Tab",
+      "name": "SPFx Tab",
+      "contentUrl": "https://{teamSiteDomain}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest=/_layouts/15/teamshostedapp.aspx%3Fteams%26personal%26componentId=b7771434-9587-4a79-9990-48c310f78a3d%26forceLocale={locale}",
+      "scopes": ["personal"]
     }
   ],
   "validDomains": [
